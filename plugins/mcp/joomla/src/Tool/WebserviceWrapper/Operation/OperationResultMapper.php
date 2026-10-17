@@ -46,7 +46,7 @@ final class OperationResultMapper
      *
      * @param array<string, mixed>|null $schema
      */
-    private function normaliseOutputFormats(mixed $body, ?array $schema): mixed
+    private function normaliseOutputFormats(mixed $body, ?array $schema, bool $nested = false): mixed
     {
         if ($schema === null) {
             return $body;
@@ -55,7 +55,7 @@ final class OperationResultMapper
         if (($schema['type'] ?? null) === 'array' && \is_array($body)) {
             $items = \is_array($schema['items'] ?? null) ? $schema['items'] : null;
 
-            return array_map(fn ($value): mixed => $this->normaliseOutputFormats($value, $items), $body);
+            return array_map(fn ($value): mixed => $this->normaliseOutputFormats($value, $items, $nested), $body);
         }
 
         if (!\is_array($body) || !\is_array($schema['properties'] ?? null)) {
@@ -67,8 +67,19 @@ final class OperationResultMapper
                 continue;
             }
 
-            if (isset($propertySchema['properties']) || ($propertySchema['type'] ?? null) === 'array') {
-                $body[$name] = $this->normaliseOutputFormats($body[$name], $propertySchema);
+            if (
+                isset($propertySchema['properties'])
+                || $this->isType($propertySchema, 'array')
+                || $this->isType($propertySchema, 'object')
+            ) {
+                $body[$name] = $this->normaliseOutputFormats($body[$name], $propertySchema, true);
+
+                // Joomla encodes an unset object, such as the images of an article, as an empty list. The schema
+                // declares an object, and an empty PHP array would be serialised as a JSON list.
+                if ($body[$name] === [] && $this->isType($propertySchema, 'object')) {
+                    $body[$name] = new \stdClass();
+                }
+
                 continue;
             }
 
@@ -77,7 +88,23 @@ final class OperationResultMapper
             }
         }
 
+        // Joomla omits unset fields of a stored object. The schema requires them, so they take the declared default.
+        // The resource itself is left as Joomla reports it.
+        foreach ($nested ? ($schema['required'] ?? []) : [] as $name) {
+            if (!\array_key_exists($name, $body) && \array_key_exists('default', $schema['properties'][$name] ?? [])) {
+                $body[$name] = $schema['properties'][$name]['default'];
+            }
+        }
+
         return $body;
+    }
+
+    /**
+     * @param array<string, mixed> $schema
+     */
+    private function isType(array $schema, string $type): bool
+    {
+        return \in_array($type, (array) ($schema['type'] ?? []), true);
     }
 
     /**
@@ -138,11 +165,44 @@ final class OperationResultMapper
         $normalised = \is_array($resource['attributes'] ?? null) ? $resource['attributes'] : [];
 
         if (\array_key_exists('id', $resource) && !\array_key_exists('id', $normalised)) {
-            $normalised['id'] = ctype_digit((string) $resource['id'])
-                ? (int) $resource['id']
-                : $resource['id'];
+            $normalised['id'] = $this->identifier($resource['id']);
+        }
+
+        // A relationship such as the category of an article is not an attribute. Unless an attribute of the same name
+        // exists, it is reported as its resource identifier, the way the output schema declares it.
+        foreach (\is_array($resource['relationships'] ?? null) ? $resource['relationships'] : [] as $name => $relationship) {
+            if (\array_key_exists($name, $normalised) || !\is_array($relationship) || !\array_key_exists('data', $relationship)) {
+                continue;
+            }
+
+            $data = $relationship['data'];
+
+            $normalised[$name] = match (true) {
+                !\is_array($data)       => $data,
+                array_is_list($data)    => array_map($this->resourceIdentifier(...), $data),
+                default                 => $this->resourceIdentifier($data),
+            };
         }
 
         return $normalised;
+    }
+
+    /**
+     * @param array<string, mixed> $identifier
+     *
+     * @return array<string, mixed>
+     */
+    private function resourceIdentifier(array $identifier): array
+    {
+        if (\array_key_exists('id', $identifier)) {
+            $identifier['id'] = $this->identifier($identifier['id']);
+        }
+
+        return $identifier;
+    }
+
+    private function identifier(mixed $id): mixed
+    {
+        return ctype_digit((string) $id) ? (int) $id : $id;
     }
 }

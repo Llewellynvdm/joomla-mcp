@@ -167,4 +167,46 @@ final class OperationResultMapperTest extends TestCase
         self::assertSame('2025-01-07T08:15:00+00:00', $body[0]['created']);
         self::assertSame('2025-02-03T10:05:00+00:00', $body[1]['created']);
     }
+
+    public function testItReportsAnEmptyObjectAndFillsRequiredDefaults(): void
+    {
+        // Joomla returns an unset object such as the images of an article as an empty list, and a relationship such as
+        // the category outside the attributes. The schema declares an object with required members, and the category.
+        $operation = new OperationDefinition(
+            operationId: 'content.articles.get',
+            method: 'GET',
+            path: 'v1/content/articles/:id',
+            controller: 'articles',
+            task: 'displayItem',
+            title: 'Get article',
+            description: 'Returns an article.',
+            inputSchema: ['type' => 'object'],
+            outputSchema: [
+                'type'       => 'object',
+                'properties' => [
+                    'images' => [
+                        'type'       => 'object',
+                        'properties' => ['image_intro' => ['type' => 'string', 'default' => '']],
+                        'required'   => ['image_intro'],
+                    ],
+                    'extra'    => ['type' => 'object'],
+                    'category' => ['type' => 'object'],
+                ],
+            ],
+            acl: ['component' => 'com_content'],
+        );
+
+        $body = (new OperationResultMapper())->map($operation, new OperationResult(200, [
+            'data' => [
+                'id'            => '3',
+                'attributes'    => ['images' => [], 'extra' => []],
+                'relationships' => ['category' => ['data' => ['type' => 'categories', 'id' => '2']]],
+            ],
+        ]))->body;
+
+        self::assertSame(['image_intro' => ''], $body['images']);
+        self::assertEquals(new \stdClass(), $body['extra']);
+        self::assertSame('{}', json_encode($body['extra']));
+        self::assertSame(['type' => 'categories', 'id' => 2], $body['category']);
+    }
 }
