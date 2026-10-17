@@ -45,17 +45,6 @@ final class McpController extends BaseController
         $route = $this->input->getPath('route', '');
         $this->logger->debug("Handling request '$route'");
 
-        if (!ComponentHelper::getParams('com_mcp')->get('enabled', 0)) {
-            $this->logger->warning("Rejected request '$route': the MCP server is disabled.");
-
-            $this->sendResponse(new JsonResponse([
-                'error'   => 'Service Unavailable',
-                'message' => 'The MCP server is disabled.',
-            ], 503));
-
-            return;
-        }
-
         $toolRegistry = $this->collectAbilities();
         $authService  = $this->app->get('mcp.authService');
         $config       = ['logger' => $this->logger];
