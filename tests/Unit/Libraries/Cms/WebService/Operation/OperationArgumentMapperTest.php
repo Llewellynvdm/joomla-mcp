@@ -2,9 +2,9 @@
 
 namespace Joomla\Tests\Unit\Libraries\Cms\WebService\Operation;
 
-use Joomla\CMS\WebService\Operation\OperationArgumentMapper;
 use Joomla\CMS\WebService\Operation\OperationCompiler;
 use Joomla\Component\Content\Api\Controller\ArticlesController;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationArgumentMapper;
 use PHPUnit\Framework\TestCase;
 
 final class OperationArgumentMapperTest extends TestCase
@@ -58,7 +58,7 @@ final class OperationArgumentMapperTest extends TestCase
         );
 
         self::assertSame(
-            ['page[limit]' => 50, 'page[offset]' => 20],
+            ['page' => ['limit' => 50, 'offset' => 20]],
             $input->query,
         );
     }
@@ -100,7 +100,7 @@ final class OperationArgumentMapperTest extends TestCase
         );
 
         self::assertSame(
-            ['filter[author]' => 42, 'list[ordering]' => 'created'],
+            ['filter' => ['author' => 42], 'list' => ['ordering' => 'created']],
             $input->query,
         );
     }
@@ -113,7 +113,7 @@ final class OperationArgumentMapperTest extends TestCase
             ['modified_start' => '2026-01-17T22:00:00+05:00'],
         );
 
-        self::assertSame(['filter[modified_start]' => '2026-01-17 17:00:00'], $input->query);
+        self::assertSame(['filter' => ['modified_start' => '2026-01-17 17:00:00']], $input->query);
     }
 
     public function testDateTimeArgumentsWithoutAnOffsetAreReadAsUtc(): void
@@ -124,7 +124,7 @@ final class OperationArgumentMapperTest extends TestCase
             ['modified_end' => '2026-01-17T22:00:00'],
         );
 
-        self::assertSame(['filter[modified_end]' => '2026-01-17 22:00:00'], $input->query);
+        self::assertSame(['filter' => ['modified_end' => '2026-01-17 22:00:00']], $input->query);
     }
 
     public function testDateTimeObjectsAreAccepted(): void
@@ -135,7 +135,7 @@ final class OperationArgumentMapperTest extends TestCase
             ['modified_start' => new \DateTimeImmutable('2026-01-17 22:00:00', new \DateTimeZone('+05:00'))],
         );
 
-        self::assertSame(['filter[modified_start]' => '2026-01-17 17:00:00'], $input->query);
+        self::assertSame(['filter' => ['modified_start' => '2026-01-17 17:00:00']], $input->query);
     }
 
     public function testNonDateTimeArgumentsAreNotReformatted(): void
@@ -146,7 +146,7 @@ final class OperationArgumentMapperTest extends TestCase
             ['search' => '2026-01-17T22:00:00+05:00'],
         );
 
-        self::assertSame(['filter[search]' => '2026-01-17T22:00:00+05:00'], $input->query);
+        self::assertSame(['filter' => ['search' => '2026-01-17T22:00:00+05:00']], $input->query);
     }
 
     public function testAnUnusableDateTimeArgumentIsRejected(): void

@@ -9,7 +9,7 @@
 	<authorUrl>www.joomla.org</authorUrl>
 	<version>__DEPLOY_VERSION__</version>
 	<description>PLG_MCP_JOOMLA_XML_DESCRIPTION</description>
-	<namespace path="src">Joomla\Plugin\Mcp\Joomla</namespace>
+	<namespace path="src">Joomla\Plugin\MCP\Joomla</namespace>
 	<files>
 		<folder plugin="joomla">services</folder>
 		<folder>src</folder>

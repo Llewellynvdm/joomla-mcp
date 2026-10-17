@@ -1,6 +1,6 @@
 <?php
 
-namespace Joomla\Plugin\Mcp\Joomla\Resource;
+namespace Joomla\Plugin\MCP\Joomla\Resource;
 
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Mcp\Resource\ResourceInterface;

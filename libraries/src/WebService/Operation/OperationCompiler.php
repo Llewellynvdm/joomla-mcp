@@ -11,9 +11,8 @@
 namespace Joomla\CMS\WebService\Operation;
 
 use Doctrine\Inflector\InflectorFactory;
+use Joomla\CMS\WebService\Definition\Resource\Schema\SchemaFactory;
 use Joomla\CMS\WebService\Operation\Attribute\ResourceOperations;
-use Joomla\CMS\WebService\Resource\ResourceProfile;
-use Joomla\CMS\WebService\Resource\Schema\ResourceSchemaFactory;
 
 /**
  * Compiles convention-derived CRUD operations from an attributed Joomla API controller.
@@ -22,7 +21,7 @@ use Joomla\CMS\WebService\Resource\Schema\ResourceSchemaFactory;
  */
 final class OperationCompiler
 {
-    public function __construct(private readonly ResourceSchemaFactory $schemaFactory = new ResourceSchemaFactory())
+    public function __construct(private readonly SchemaFactory $schemaFactory = new SchemaFactory())
     {
     }
 
@@ -53,10 +52,10 @@ final class OperationCompiler
         $component     = $convention['component'];
         $tag           = ucfirst($convention['collection']);
 
-        $readSchema   = $this->schemaFactory->create($resourceClass, ResourceProfile::READ);
-        $listSchema   = $this->schemaFactory->create($resourceClass, ResourceProfile::LIST);
-        $createSchema = $this->schemaFactory->create($resourceClass, ResourceProfile::CREATE);
-        $updateSchema = $this->schemaFactory->create($resourceClass, ResourceProfile::UPDATE);
+        $readSchema   = $this->schemaFactory->create($resourceClass, OperationType::READ);
+        $listSchema   = $this->schemaFactory->create($resourceClass, OperationType::LIST);
+        $createSchema = $this->schemaFactory->create($resourceClass, OperationType::CREATE);
+        $updateSchema = $this->schemaFactory->create($resourceClass, OperationType::UPDATE);
         $querySchema  = class_exists($queryClass)
             ? $this->schemaFactory->create($queryClass)
             : $this->emptyObjectSchema();
@@ -188,8 +187,8 @@ final class OperationCompiler
         $inflector      = InflectorFactory::create()->build();
         $resource       = $inflector->singularize($controllerName);
         $resourceClass  = $configuration->resourceClass
-            ?? \sprintf('Joomla\\Component\\%s\\Api\\Resource\\%s', $componentName, $resource);
-        $queryClass = \sprintf('Joomla\\Component\\%s\\Api\\Query\\%sListQuery', $componentName, $resource);
+            ?? \sprintf('Joomla\\Component\\%s\\Api\\Definition\\Resource\\%s', $componentName, $resource);
+        $queryClass = \sprintf('Joomla\\Component\\%s\\Api\\Definition\\ListQuery\\%s', $componentName, $controllerName);
 
         if (!class_exists($resourceClass)) {
             throw new \LogicException(

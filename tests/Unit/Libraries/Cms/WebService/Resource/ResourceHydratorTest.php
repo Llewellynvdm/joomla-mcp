@@ -2,8 +2,8 @@
 
 namespace Joomla\Tests\Unit\Libraries\Cms\WebService\Resource;
 
-use Joomla\CMS\WebService\Resource\ResourceProfile;
-use Joomla\Component\Content\Api\Resource\Article;
+use Joomla\CMS\WebService\Operation\OperationType;
+use Joomla\Component\Content\Api\Definition\Resource\Article;
 use PHPUnit\Framework\TestCase;
 
 final class ResourceHydratorTest extends TestCase
@@ -13,7 +13,7 @@ final class ResourceHydratorTest extends TestCase
         /** @var Article $article */
         $article = Article::fromArray(
             ['title' => 'Example', 'catid' => 2],
-            ResourceProfile::CREATE,
+            OperationType::CREATE,
         );
 
         self::assertSame('', $article->alias);
@@ -25,7 +25,7 @@ final class ResourceHydratorTest extends TestCase
         /** @var Article $article */
         $article = Article::fromArray(
             ['title' => 'Changed', 'note' => null],
-            ResourceProfile::UPDATE,
+            OperationType::UPDATE,
         );
 
         self::assertTrue($article->has('title'));
@@ -38,7 +38,7 @@ final class ResourceHydratorTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        Article::fromArray(['id' => 4], ResourceProfile::UPDATE);
+        Article::fromArray(['id' => 4], OperationType::UPDATE);
     }
 
     public function testAdditionalPropertiesArePreserved(): void
@@ -46,10 +46,10 @@ final class ResourceHydratorTest extends TestCase
         /** @var Article $article */
         $article = Article::fromArray(
             ['custom_colour' => 'blue'],
-            ResourceProfile::UPDATE,
+            OperationType::UPDATE,
         );
 
         self::assertSame('blue', $article->getAdditionalProperties()['custom_colour']);
-        self::assertSame('blue', $article->toArray(ResourceProfile::UPDATE)['custom_colour']);
+        self::assertSame('blue', $article->toArray(OperationType::UPDATE)['custom_colour']);
     }
 }

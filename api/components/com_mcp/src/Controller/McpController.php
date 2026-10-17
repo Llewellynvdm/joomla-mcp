@@ -19,7 +19,7 @@ namespace Joomla\Component\MCP\Api\Controller;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Plugin\PluginHelper;
-use Joomla\Component\MCP\Administrator\Event\InitialiseMCPServerEvent;
+use Joomla\CMS\Event\MCP\InitialiseMCPServerEvent;
 use Joomla\Component\MCP\Api\Core\AbilityRegistry;
 use Joomla\Component\MCP\Api\Core\McpEndpoint;
 use Laminas\Diactoros\Response\JsonResponse;

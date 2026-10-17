@@ -52,7 +52,7 @@ final class OperationCompilerTest extends TestCase
         // Pagination is a framework concern the compiler adds to every list operation, so it appears in the tool
         // input and transport even though ArticleListQuery does not declare limit or offset itself.
         $queryProperties = (new \ReflectionClass(
-            \Joomla\Component\Content\Api\Query\ArticleListQuery::class,
+            \Joomla\Component\Content\Api\Definition\ListQuery\Articles::class,
         ))->getProperties();
 
         self::assertNotContains('limit', array_map(static fn ($p) => $p->getName(), $queryProperties));

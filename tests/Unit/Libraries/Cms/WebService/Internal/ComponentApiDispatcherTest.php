@@ -2,10 +2,10 @@
 
 namespace Joomla\Tests\Unit\Libraries\Cms\WebService\Internal;
 
-use Joomla\CMS\WebService\Internal\ComponentApiDispatcher;
 use Joomla\CMS\WebService\Operation\OperationCompiler;
-use Joomla\CMS\WebService\Operation\OperationInput;
 use Joomla\Component\Content\Api\Controller\ArticlesController;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationInput;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Dispatcher\WebserviceDispatcher;
 use PHPUnit\Framework\TestCase;
 
 final class ComponentApiDispatcherTest extends TestCase
@@ -16,13 +16,12 @@ final class ComponentApiDispatcherTest extends TestCase
     private function sourceFor(int $operationIndex, OperationInput $input): array
     {
         $operation = (new OperationCompiler())->compile(ArticlesController::class)[$operationIndex];
-        $method    = new \ReflectionMethod(ComponentApiDispatcher::class, 'requestSource');
+        $method    = new \ReflectionMethod(WebserviceDispatcher::class, 'requestSource');
 
         return $method->invoke(
-            new ComponentApiDispatcher(),
+            new WebserviceDispatcher(),
             $operation,
             $input,
-            $input->query,
             'com_content',
         );
     }

@@ -133,6 +133,7 @@ class McpEndpoint
             $user = new User($tokenInfo->userid);
             $this->setCurrentUser($user);
             Factory::getApplication()->loadIdentity($user);
+            Factory::getSession()->set('user', $user);
 
             $server = new Server($this->config['server_name'] ?? 'Joomla MCP Server');
 

@@ -8,18 +8,18 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\Plugin\Mcp\Joomla\Extension;
+namespace Joomla\Plugin\MCP\Joomla\Extension;
 
-use Joomla\CMS\Mcp\Tool\InternalApiOperationInvoker;
-use Joomla\CMS\Mcp\Tool\WebserviceToolProvider;
+use Joomla\CMS\Event\MCP\InitialiseMCPServerEvent;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\WebService\Operation\OperationCompiler;
 use Joomla\Component\Content\Api\Controller\ArticlesController;
-use Joomla\Component\MCP\Administrator\Event\InitialiseMCPServerEvent;
 use Joomla\Event\SubscriberInterface;
-use Joomla\Plugin\Mcp\Joomla\Resource\ApplicationConfig;
-use Joomla\Plugin\Mcp\Joomla\Resource\SysInfo;
-use Joomla\Plugin\Mcp\Joomla\Tool\PurgeCache;
+use Joomla\Plugin\MCP\Joomla\Resource\ApplicationConfig;
+use Joomla\Plugin\MCP\Joomla\Resource\SysInfo;
+use Joomla\Plugin\MCP\Joomla\Tool\PurgeCache\PurgeCache;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Dispatcher\WebserviceDispatcher;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\WebserviceToolProvider;
 
 /**
  * Registers Joomla MCP abilities.
@@ -45,7 +45,7 @@ final class Joomla extends CMSPlugin implements SubscriberInterface
 
         $provider = new WebserviceToolProvider(
             new OperationCompiler(),
-            new InternalApiOperationInvoker(),
+            new WebserviceDispatcher(),
         );
 
         foreach ($provider->getTools(ArticlesController::class) as $tool) {

@@ -10,17 +10,17 @@
 
 namespace Joomla\Tests\Unit\Libraries\Cms\WebService\Internal;
 
-use Joomla\CMS\WebService\Internal\InternalApiInput;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Input\WebserviceInput;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Joomla\CMS\WebService\Internal\InternalApiInput
+ * @covers \Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Input\WebserviceInput
  */
 final class InternalApiInputTest extends TestCase
 {
     public function testItProvidesAnIsolatedJsonRequestView(): void
     {
-        $input = new InternalApiInput(
+        $input = new WebserviceInput(
             [
                 'option' => 'com_content',
                 'task'   => 'articles.edit',

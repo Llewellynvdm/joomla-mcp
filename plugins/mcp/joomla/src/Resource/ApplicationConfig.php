@@ -1,13 +1,13 @@
 <?php
 
-namespace Joomla\Plugin\Mcp\Joomla\Resource;
+namespace Joomla\Plugin\MCP\Joomla\Resource;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Mcp\Resource\ResourceInterface;
 use Joomla\CMS\Mcp\Resource\ResourceResult;
-use Joomla\CMS\WebService\Resource\Attribute\Property\Guarded;
-use Joomla\Component\Config\Api\Resource\ApplicationConfig as ConfigDTO;
+use Joomla\CMS\WebService\Definition\Attribute\Property\Guarded;
+use Joomla\Component\Config\Api\Definition\Resource\ApplicationConfig as ConfigDTO;
 
 class ApplicationConfig implements ResourceInterface
 {

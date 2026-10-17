@@ -15,7 +15,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
-use Joomla\Plugin\Mcp\Joomla\Extension\Joomla;
+use Joomla\Plugin\MCP\Joomla\Extension\Joomla;
 
 return new class () implements ServiceProviderInterface {
     /**
