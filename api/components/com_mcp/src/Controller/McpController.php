@@ -16,7 +16,6 @@ namespace Joomla\Component\MCP\Api\Controller;
 \defined('_JEXEC') or die;
 // phpcs:enable PSR1.Files.SideEffects
 
-use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Event\MCP\InitialiseMCPServerEvent;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Plugin\PluginHelper;
