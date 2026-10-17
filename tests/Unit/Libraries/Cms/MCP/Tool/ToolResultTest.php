@@ -8,15 +8,15 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\Tests\Unit\Libraries\Cms\Mcp\Tool;
+namespace Joomla\Tests\Unit\Libraries\Cms\MCP\Tool;
 
-use Joomla\CMS\Mcp\Content\AudioContent;
-use Joomla\CMS\Mcp\Content\ContentType;
-use Joomla\CMS\Mcp\Content\EmbeddedResource;
-use Joomla\CMS\Mcp\Content\ImageContent;
-use Joomla\CMS\Mcp\Content\ResourceLink;
-use Joomla\CMS\Mcp\Content\TextContent;
-use Joomla\CMS\Mcp\Tool\ToolResult;
+use Joomla\CMS\MCP\Content\AudioContent;
+use Joomla\CMS\MCP\Content\ContentType;
+use Joomla\CMS\MCP\Content\EmbeddedResource;
+use Joomla\CMS\MCP\Content\ImageContent;
+use Joomla\CMS\MCP\Content\ResourceLink;
+use Joomla\CMS\MCP\Content\TextContent;
+use Joomla\CMS\MCP\Tool\ToolResult;
 use Joomla\Tests\Unit\UnitTestCase;
 
 /**

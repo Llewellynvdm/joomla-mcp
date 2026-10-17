@@ -7,19 +7,19 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\CMS\Mcp\Tool;
+namespace Joomla\CMS\MCP\Tool;
 
 // phpcs:disable PSR1.Files.SideEffects
 \defined('_JEXEC') or die;
 // phpcs:enable PSR1.Files.SideEffects
 
-use Joomla\CMS\Mcp\Content\AudioContent;
-use Joomla\CMS\Mcp\Content\ContentInterface;
-use Joomla\CMS\Mcp\Content\EmbeddedResource;
-use Joomla\CMS\Mcp\Content\ImageContent;
-use Joomla\CMS\Mcp\Content\ResourceContents;
-use Joomla\CMS\Mcp\Content\ResourceLink;
-use Joomla\CMS\Mcp\Content\TextContent;
+use Joomla\CMS\MCP\Content\AudioContent;
+use Joomla\CMS\MCP\Content\ContentInterface;
+use Joomla\CMS\MCP\Content\EmbeddedResource;
+use Joomla\CMS\MCP\Content\ImageContent;
+use Joomla\CMS\MCP\Content\ResourceContents;
+use Joomla\CMS\MCP\Content\ResourceLink;
+use Joomla\CMS\MCP\Content\TextContent;
 
 /**
  * Result of an MCP tool execution.

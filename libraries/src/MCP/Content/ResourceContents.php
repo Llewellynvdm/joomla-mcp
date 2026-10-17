@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\CMS\Mcp\Content;
+namespace Joomla\CMS\MCP\Content;
 
 // phpcs:disable PSR1.Files.SideEffects
 \defined('_JEXEC') or die;

@@ -7,13 +7,13 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\CMS\Mcp\Resource;
+namespace Joomla\CMS\MCP\Resource;
 
 // phpcs:disable PSR1.Files.SideEffects
 \defined('_JEXEC') or die;
 // phpcs:enable PSR1.Files.SideEffects
 
-use Joomla\CMS\Mcp\Content\ResourceContents;
+use Joomla\CMS\MCP\Content\ResourceContents;
 
 /**
  * Result of reading an MCP resource.

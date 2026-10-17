@@ -9,8 +9,8 @@
 
 namespace Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper;
 
-use Joomla\CMS\Mcp\Tool\ToolInterface;
-use Joomla\CMS\Mcp\Tool\ToolResult;
+use Joomla\CMS\MCP\Tool\ToolInterface;
+use Joomla\CMS\MCP\Tool\ToolResult;
 use Joomla\CMS\WebService\Operation\OperationDefinition;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Dispatcher\WebserviceDispatcher;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationArgumentMapper;

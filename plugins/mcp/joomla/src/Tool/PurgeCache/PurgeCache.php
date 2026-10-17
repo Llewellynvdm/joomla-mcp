@@ -4,8 +4,8 @@ namespace Joomla\Plugin\MCP\Joomla\Tool\PurgeCache;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Mcp\Tool\ToolInterface;
-use Joomla\CMS\Mcp\Tool\ToolResult;
+use Joomla\CMS\MCP\Tool\ToolInterface;
+use Joomla\CMS\MCP\Tool\ToolResult;
 
 class PurgeCache implements ToolInterface
 {

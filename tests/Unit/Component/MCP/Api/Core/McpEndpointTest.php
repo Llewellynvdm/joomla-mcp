@@ -8,13 +8,13 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\Tests\Unit\Component\Mcp\Api\Core;
+namespace Joomla\Tests\Unit\Component\MCP\Api\Core;
 
-use Joomla\CMS\Mcp\Resource\ResourceInterface;
-use Joomla\CMS\Mcp\Resource\ResourceResult;
-use Joomla\CMS\Mcp\Resource\ResourceTemplateInterface;
-use Joomla\CMS\Mcp\Tool\ToolInterface;
-use Joomla\CMS\Mcp\Tool\ToolResult;
+use Joomla\CMS\MCP\Resource\ResourceInterface;
+use Joomla\CMS\MCP\Resource\ResourceResult;
+use Joomla\CMS\MCP\Resource\ResourceTemplateInterface;
+use Joomla\CMS\MCP\Tool\ToolInterface;
+use Joomla\CMS\MCP\Tool\ToolResult;
 use Joomla\Component\MCP\Api\Auth\AuthServiceInterface;
 use Joomla\Component\MCP\Api\Core\AbilityRegistry;
 use Joomla\Component\MCP\Api\Core\McpEndpoint;

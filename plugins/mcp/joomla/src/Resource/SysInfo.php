@@ -3,8 +3,8 @@
 namespace Joomla\Plugin\MCP\Joomla\Resource;
 
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Mcp\Resource\ResourceInterface;
-use Joomla\CMS\Mcp\Resource\ResourceResult;
+use Joomla\CMS\MCP\Resource\ResourceInterface;
+use Joomla\CMS\MCP\Resource\ResourceResult;
 use Joomla\CMS\Version;
 
 class SysInfo implements ResourceInterface

@@ -4,8 +4,8 @@ namespace Joomla\Plugin\MCP\Joomla\Resource;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Mcp\Resource\ResourceInterface;
-use Joomla\CMS\Mcp\Resource\ResourceResult;
+use Joomla\CMS\MCP\Resource\ResourceInterface;
+use Joomla\CMS\MCP\Resource\ResourceResult;
 use Joomla\CMS\WebService\Definition\Attribute\Property\Guarded;
 use Joomla\Component\Config\Api\Definition\Resource\ApplicationConfig as ConfigDTO;
 

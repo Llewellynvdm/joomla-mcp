@@ -8,10 +8,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\Tests\Unit\Libraries\Cms\Mcp\Resource;
+namespace Joomla\Tests\Unit\Libraries\Cms\MCP\Resource;
 
-use Joomla\CMS\Mcp\Content\ResourceContents;
-use Joomla\CMS\Mcp\Resource\ResourceResult;
+use Joomla\CMS\MCP\Content\ResourceContents;
+use Joomla\CMS\MCP\Resource\ResourceResult;
 use Joomla\Tests\Unit\UnitTestCase;
 
 /**

@@ -16,10 +16,10 @@ namespace Joomla\CMS\Event\MCP;
 \defined('_JEXEC') or die;
 // phpcs:enable PSR1.Files.SideEffects
 
-use Joomla\CMS\Mcp\Prompt\PromptInterface;
-use Joomla\CMS\Mcp\Resource\ResourceInterface;
-use Joomla\CMS\Mcp\Resource\ResourceTemplateInterface;
-use Joomla\CMS\Mcp\Tool\ToolInterface;
+use Joomla\CMS\MCP\Prompt\PromptInterface;
+use Joomla\CMS\MCP\Resource\ResourceInterface;
+use Joomla\CMS\MCP\Resource\ResourceTemplateInterface;
+use Joomla\CMS\MCP\Tool\ToolInterface;
 use Joomla\Component\MCP\Api\Core\AbilityRegistry;
 use Joomla\Event\Event;
 

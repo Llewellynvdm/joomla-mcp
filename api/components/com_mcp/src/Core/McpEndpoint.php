@@ -17,11 +17,11 @@ namespace Joomla\Component\MCP\Api\Core;
 // phpcs:enable PSR1.Files.SideEffects
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Mcp\Resource\ResourceInterface;
-use Joomla\CMS\Mcp\Resource\ResourceResult;
-use Joomla\CMS\Mcp\Resource\ResourceTemplateInterface;
-use Joomla\CMS\Mcp\Tool\ToolInterface;
-use Joomla\CMS\Mcp\Tool\ToolResult;
+use Joomla\CMS\MCP\Resource\ResourceInterface;
+use Joomla\CMS\MCP\Resource\ResourceResult;
+use Joomla\CMS\MCP\Resource\ResourceTemplateInterface;
+use Joomla\CMS\MCP\Tool\ToolInterface;
+use Joomla\CMS\MCP\Tool\ToolResult;
 use Joomla\CMS\User\CurrentUserTrait;
 use Joomla\CMS\User\User;
 use Joomla\Component\MCP\Api\Auth\AuthServiceInterface;

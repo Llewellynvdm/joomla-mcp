@@ -8,9 +8,9 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Joomla\Tests\Unit\Component\Mcp\Api\Core;
+namespace Joomla\Tests\Unit\Component\MCP\Api\Core;
 
-use Joomla\CMS\Mcp\Tool\ToolInterface;
+use Joomla\CMS\MCP\Tool\ToolInterface;
 use Joomla\Component\MCP\Api\Core\AbilityRegistry;
 use Joomla\Tests\Unit\UnitTestCase;
 use Psr\Log\LoggerInterface;
