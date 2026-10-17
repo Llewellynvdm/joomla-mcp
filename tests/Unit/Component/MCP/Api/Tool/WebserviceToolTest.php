@@ -5,9 +5,9 @@ namespace Joomla\Tests\Unit\Component\MCP\Api\Tool;
 use Joomla\CMS\WebService\Operation\OperationCompiler;
 use Joomla\CMS\WebService\Operation\OperationDefinition;
 use Joomla\Component\Content\Api\Controller\ArticlesController;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Dispatcher\WebserviceDispatcher;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationInput;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationResult;
-use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Dispatcher\WebserviceDispatcher;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\WebserviceTool;
 use PHPUnit\Framework\TestCase;
 

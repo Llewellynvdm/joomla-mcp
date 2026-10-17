@@ -17,9 +17,9 @@ use Joomla\CMS\MVC\Controller\Exception\ResourceNotFound;
 use Joomla\CMS\WebService\Operation\OperationDefinition;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Application\ApiApplication;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Application\ApplicationClosed;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Input\WebserviceInput;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationInput;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationResult;
-use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Input\WebserviceInput;
 use Tobscure\JsonApi\Exception\InvalidParameterException;
 
 /**

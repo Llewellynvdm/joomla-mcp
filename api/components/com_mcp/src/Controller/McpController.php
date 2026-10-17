@@ -17,9 +17,9 @@ namespace Joomla\Component\MCP\Api\Controller;
 // phpcs:enable PSR1.Files.SideEffects
 
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Event\MCP\InitialiseMCPServerEvent;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Plugin\PluginHelper;
-use Joomla\CMS\Event\MCP\InitialiseMCPServerEvent;
 use Joomla\Component\MCP\Api\Core\AbilityRegistry;
 use Joomla\Component\MCP\Api\Core\McpEndpoint;
 use Laminas\Diactoros\Response\JsonResponse;

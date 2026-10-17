@@ -4,8 +4,8 @@ namespace Joomla\Tests\Unit\Libraries\Cms\WebService\Internal;
 
 use Joomla\CMS\WebService\Operation\OperationCompiler;
 use Joomla\Component\Content\Api\Controller\ArticlesController;
-use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationInput;
 use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Dispatcher\WebserviceDispatcher;
+use Joomla\Plugin\MCP\Joomla\Tool\WebserviceWrapper\Operation\OperationInput;
 use PHPUnit\Framework\TestCase;
 
 final class ComponentApiDispatcherTest extends TestCase

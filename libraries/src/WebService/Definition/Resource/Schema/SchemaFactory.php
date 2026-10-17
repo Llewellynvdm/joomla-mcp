@@ -18,8 +18,8 @@ use Joomla\CMS\WebService\Definition\Attribute\Property\Items;
 use Joomla\CMS\WebService\Definition\Attribute\Property\Optional;
 use Joomla\CMS\WebService\Definition\Attribute\Property\Required;
 use Joomla\CMS\WebService\Definition\Attribute\Resource\AdditionalProperties;
-use Joomla\CMS\WebService\Operation\OperationType;
 use Joomla\CMS\WebService\Definition\Resource\ResourceInterface;
+use Joomla\CMS\WebService\Operation\OperationType;
 
 /**
  * Builds an operation specific resource description from typed DTOs and resource conventions.
@@ -64,8 +64,8 @@ final class SchemaFactory
             }
 
             $propertySchema      = $this->getSchemaForProperty($property, $operationType);
-            $description = $this->firstAttribute($property, Description::class);
-            $example     = $this->firstAttribute($property, Example::class);
+            $description         = $this->firstAttribute($property, Description::class);
+            $example             = $this->firstAttribute($property, Example::class);
 
             if ($description instanceof Description) {
                 $propertySchema['description'] = $description->description;
@@ -125,9 +125,9 @@ final class SchemaFactory
         }
 
         return match ($operationType) {
-            OperationType::CREATE                      => !$property->hasDefaultValue(),
+            OperationType::CREATE                    => !$property->hasDefaultValue(),
             OperationType::READ, OperationType::LIST => !$this->allowsNull($property->getType()),
-            default                                      => false,
+            default                                  => false,
         };
     }
 
