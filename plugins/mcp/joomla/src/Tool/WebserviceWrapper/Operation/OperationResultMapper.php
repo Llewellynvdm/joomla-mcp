@@ -178,9 +178,9 @@ final class OperationResultMapper
             $data = $relationship['data'];
 
             $normalised[$name] = match (true) {
-                !\is_array($data)       => $data,
-                array_is_list($data)    => array_map($this->resourceIdentifier(...), $data),
-                default                 => $this->resourceIdentifier($data),
+                !\is_array($data)    => $data,
+                array_is_list($data) => array_map($this->resourceIdentifier(...), $data),
+                default              => $this->resourceIdentifier($data),
             };
         }
 
