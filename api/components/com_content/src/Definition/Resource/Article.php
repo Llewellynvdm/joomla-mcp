@@ -47,12 +47,22 @@ final class Article extends BaseResource
     #[Required([OperationType::CREATE])]
     public string $title;
 
-    // Joomla stores the body split into introtext and fulltext but exposes it differently per direction, so the
-    // contract declares both sides, mirroring the catid/category split below.
-    // Joomla lets an article be saved without a body, so this stays optional and defaults to an empty string.
+    // Joomla stores the body split into introtext and fulltext and accepts it differently per operation. A create takes
+    // the complete text as articletext and splits it at the readmore tag. A partial update cannot: the API merges the
+    // stored introtext and fulltext into the data of a PATCH, and these override a submitted articletext. An update
+    // therefore addresses the two parts directly. Reading returns both parts and the combined text.
+    // Joomla lets an article be saved without a body, so these stay optional and default to an empty string.
     #[Description('The complete article text. Add a <hr id="system-readmore"> tag to split the intro and full text.')]
-    #[Hidden([OperationType::LIST, OperationType::READ])]
+    #[Hidden([OperationType::LIST, OperationType::READ, OperationType::UPDATE])]
     public string $articletext = '';
+
+    #[Description('The intro part of the article text, shown before the readmore link.')]
+    #[Hidden([OperationType::CREATE])]
+    public string $introtext = '';
+
+    #[Description('The full part of the article text, shown after the readmore link.')]
+    #[Hidden([OperationType::CREATE])]
+    public string $fulltext = '';
 
     #[Description('The article text, with the intro and full text combined.')]
     #[Hidden([OperationType::CREATE, OperationType::UPDATE])]
@@ -143,7 +153,9 @@ final class Article extends BaseResource
     #[Description('When the article stops being featured. Only meaningful while featured is 1.')]
     public ?\DateTimeImmutable $featured_down = null;
 
+    // The list query does not select the urls column, so only a single article reports them.
     #[Optional([OperationType::CREATE])]
+    #[Hidden([OperationType::LIST])]
     public ArticleUrls $urls;
 
     // The webservices accept an explicit position on write but never return it, so it is write-only.
